@@ -55,8 +55,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build launcher
-        run: npm run build
+      - name: Build launcher (3 tentatives, le DMG macOS échoue parfois sur les runners GitHub)
+        run: |
+          for attempt in 1 2 3; do
+            echo "Build attempt $attempt"
+            rm -rf dist
+            if npm run build; then exit 0; fi
+            echo "Build failed, retrying in 20s..."
+            sleep 20
+          done
+          exit 1
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
