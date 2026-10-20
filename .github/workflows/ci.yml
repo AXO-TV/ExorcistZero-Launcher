@@ -1,13 +1,15 @@
 name: Launcher Build
+
 on:
   push:
     branches: [ master ]
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  create-release:
+  prepare:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.get_version.outputs.version }}
@@ -18,27 +20,22 @@ jobs:
       - name: Get version
         id: get_version
         run: |
-          VERSION=$(jq -r .version package.json)
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "version=$VERSION" >> $GITHUB_ENV
-      
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ env.version }}
-          release_name: release ${{ env.version }}
-          draft: false
-          prerelease: ${{ contains(env.version, 'beta') || contains(env.version, 'alpha') }}
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
   build-launcher:
-    needs: create-release
+    needs: prepare
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        os: [macos-14, ubuntu-latest, windows-2022]
+        include:
+          - os: windows-2022
+            platform: windows
+          - os: macos-14
+            platform: macos
+          - os: ubuntu-latest
+            platform: linux
 
     steps:
       - name: Check out Git repository
@@ -48,18 +45,50 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: 3.x
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm ci
-        shell: bash
 
-      - name: Build and Publish
+      - name: Build launcher
+        run: npm run build -- --obf=true --build=platform
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run build -- --publish always
-        shell: bash
+          PUBLISH_RELEASE: 'false'
+
+      - name: Upload platform installers
+        uses: actions/upload-artifact@v4
+        with:
+          name: launcher-${{ matrix.platform }}
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 7
+
+  publish-release:
+    needs: [prepare, build-launcher]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all platform installers
+        uses: actions/download-artifact@v4
+        with:
+          pattern: launcher-*
+          path: release-assets
+          merge-multiple: true
+
+      - name: Show files to publish
+        run: ls -lah release-assets
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ needs.prepare.outputs.version }}
+          name: Version ${{ needs.prepare.outputs.version }}
+          generate_release_notes: true
+          files: release-assets/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
