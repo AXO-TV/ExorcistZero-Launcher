@@ -1,7 +1,7 @@
 {
     "name": "Exorcist Zero",
     "preductname": "Exorcist Zero Launcher",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Exorcist Zero launcher - Minecraft 26.3",
     "main": "src/app.js",
     "author": "AXO, Riptiaz/Boulldogo/Vexato/Luuxis",
