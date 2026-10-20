@@ -66,9 +66,10 @@ class Index {
 
     async buildPlatform() {
         await this.Obfuscate();
-        builder.build({
-            publish: process.env.PUBLISH_RELEASE === 'true' ? 'always' : 'never',
-            config: {
+        try {
+            await builder.build({
+                publish: process.env.PUBLISH_RELEASE === 'true' ? 'always' : 'never',
+                config: {
                 generateUpdatesFilesForAllChannels: false,
                 appId: preductname,
                 productName: preductname,
@@ -79,12 +80,6 @@ class Index {
                 directories: { "output": "dist" },
                 compression: 'maximum',
                 asar: true,
-                // Keep the GitHub provider configured so update metadata can be generated.
-                // Actual uploads are handled by the workflow after all builds finish.
-                publish: [{
-                    provider: "github",
-                    releaseType: 'release',
-                }],
                 win: {
                     icon: "./app/assets/images/icon.ico",
                     target: [{
@@ -118,12 +113,19 @@ class Index {
                         arch: "x64"
                     }]
                 }
+                }
+            });
+            console.log('Build terminé. Contenu de dist :');
+            if (fs.existsSync('./dist')) {
+                console.log(fs.readdirSync('./dist').join('\n'));
+            } else {
+                throw new Error('Electron Builder a terminé sans créer le dossier dist/.');
             }
-        }).then(() => {
-            console.log('le build est terminé')
-        }).catch(err => {
-            console.error('Error during build!', err)
-        })
+        } catch (err) {
+            console.error('Erreur pendant la compilation Electron Builder :', err);
+            process.exitCode = 1;
+            throw err;
+        }
     }
 
     getFiles(path, file = []) {

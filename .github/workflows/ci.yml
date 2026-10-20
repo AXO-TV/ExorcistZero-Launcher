@@ -56,16 +56,31 @@ jobs:
         run: npm ci
 
       - name: Build launcher
-        run: npm run build -- --obf=true --build=platform
+        run: npm run build
+        shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_RELEASE: 'false'
+
+      - name: Verify build output
+        shell: bash
+        run: |
+          echo "Build output directory:"
+          if [ ! -d dist ]; then
+            echo "ERROR: dist/ was not created by electron-builder."
+            exit 1
+          fi
+          find dist -maxdepth 2 -type f -print
+          if ! find dist -maxdepth 2 -type f | grep -q .; then
+            echo "ERROR: dist/ exists but contains no files."
+            exit 1
+          fi
 
       - name: Upload platform installers
         uses: actions/upload-artifact@v4
         with:
           name: launcher-${{ matrix.platform }}
-          path: dist/*
+          path: dist/
           if-no-files-found: error
           retention-days: 7
 
@@ -81,7 +96,7 @@ jobs:
           merge-multiple: true
 
       - name: Show files to publish
-        run: ls -lah release-assets
+        run: find release-assets -maxdepth 2 -type f -print
 
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
