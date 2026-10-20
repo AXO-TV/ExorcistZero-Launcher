@@ -114,7 +114,7 @@ class Launcher {
                 account = account.value;
                 if (account.meta.type === 'AZauth') {
                     const refresh = await AZAuth.verify(account);
-                    console.log(refresh);
+                    if (refresh && refresh.error) console.log("[Auth] verify error:", refresh.error);
                     console.log(`Initializing Mojang account ${account.name}...`);
 
                     if (refresh.error) {

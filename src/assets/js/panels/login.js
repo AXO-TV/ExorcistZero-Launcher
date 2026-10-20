@@ -297,7 +297,7 @@ class Login {
                 return;
             }
 
-            console.log(account_connect);
+            // (log du compte retiré : contient le token d'accès)
 
             const account = this.createAccountObject(account_connect);
             await this.saveAccount(account);

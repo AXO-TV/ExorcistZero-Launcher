@@ -274,7 +274,7 @@ class Home {
       intelEnabledMac:
         process.platform === "darwin" && process.arch === "arm64",
       downloadFileMultiple: 30,
-      JVM_ARGS: [],
+      JVM_ARGS: ["--enable-native-access=ALL-UNNAMED"],
       GAME_ARGS: [],
       java: this.config.java,
       memory: {
