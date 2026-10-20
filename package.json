@@ -1,12 +1,12 @@
 {
-    "name": "conflictura",
-    "preductname": "Conflictura Launcher",
-    "version": "4.0.15",
-    "description": "Conflictura modded server launcher",
+    "name": "Exorcist Zero",
+    "preductname": "Exorcist Zero Launcher",
+    "version": "1.0.0",
+    "description": "Exorcist Zero modded server launcher",
     "main": "src/app.js",
-    "author": "Riptiaz/Boulldogo/Vexato/Luuxis",
-    "env": "azuriom",
-    "settings": "https://conflictura.eu",
+    "author": "AXO, Riptiaz/Boulldogo/Vexato/Luuxis",
+    "env": "panel",
+    "settings": "https://panel.exorcist-zero.x10.mx",
     "scripts": {
         "start": "cross-env-shell NODE_ENV=dev electron .",
         "build": "node build.js --obf=true --build=platform",
@@ -38,6 +38,6 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Riptiaz/CentralCorp-Launcher.git"
+        "url": "git+https://github.com/AXO-TV/ExorcistZero-Launcher.git"
     }
 }

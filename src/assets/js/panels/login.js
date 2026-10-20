@@ -97,9 +97,9 @@ class Login {
             playBtn.style.boxShadow = "none";
             playBtn.textContent = t('unavailable');
         } else {
-            playBtn.style.backgroundColor = "#00bd7a";
+            playBtn.style.backgroundColor = "";
             playBtn.style.pointerEvents = "auto";
-            playBtn.style.boxShadow = "2px 2px 5px rgba(0, 0, 0, 0.3)";
+            playBtn.style.boxShadow = "";
             playBtn.textContent = t('play');
         }
     }
@@ -274,8 +274,10 @@ class Login {
                 } else if (account_connect.reason === 'invalid_2fa') {
                     elements.infoLogin2f.innerHTML = t('invalid_2fa_code');
                 } else {
-                    elements.infoLogin.innerHTML = t('error_occurred');
-                    elements.infoLogin2f.innerHTML = t('error_occurred');
+                    console.warn('[AZauth] Réponse du serveur :', account_connect);
+                    const detail = [account_connect.reason, account_connect.message].filter(Boolean).join(' - ');
+                    elements.infoLogin.textContent = detail ? `${t('error_occurred')} (${detail})` : t('error_occurred');
+                    elements.infoLogin2f.textContent = elements.infoLogin.textContent;
                 }
                 this.enableLoginForm(elements);
                 return;

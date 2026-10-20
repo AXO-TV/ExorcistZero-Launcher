@@ -16,7 +16,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: rgba(10, 10, 12, 0.7);
+    background: rgba(15, 20, 27, 0.7);
     backdrop-filter: blur(20px);
     border-right: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -58,34 +58,34 @@
 }
 
 .active-tab-btn {
-    background: var(--accent-color-subtle, rgba(0, 189, 122, 0.15));
-    border-color: var(--accent-color, #00bd7a);
+    background: var(--accent-color-subtle, rgba(10, 75, 214, 0.15));
+    border-color: var(--accent-color, #0a4bd6);
     color: #ffffff;
-    box-shadow: 0 0 20px var(--accent-color-glow, rgba(0, 189, 122, 0.3));
+    box-shadow: 0 0 20px var(--accent-color-glow, rgba(10, 75, 214, 0.3));
 }
 
 .active-tab-btn:hover {
-    background: var(--accent-color-subtle, rgba(0, 189, 122, 0.2));
+    background: var(--accent-color-subtle, rgba(10, 75, 214, 0.2));
     transform: translateX(0);
 }
 
 .save-tabs-btn {
     margin-top: auto !important;
-    background: linear-gradient(180deg, var(--accent-color, #00bd7a) 0%, var(--accent-color-dark, #00a066) 100%);
+    background: linear-gradient(180deg, var(--accent-color, #0a4bd6) 0%, var(--accent-color-dark, #003cc7) 100%);
     border-color: transparent;
-    color: #0a0a0a;
+    color: #ffffff;
     font-weight: 600;
     justify-content: center;
-    box-shadow: 0 2px 10px var(--accent-color-glow, rgba(0, 189, 122, 0.25));
+    box-shadow: 0 2px 10px var(--accent-color-glow, rgba(10, 75, 214, 0.25));
 }
 
 .save-tabs-btn:hover {
-    background: linear-gradient(180deg, var(--accent-color, #00bd7a) 0%, var(--accent-color-dark, #00a066) 100%);
+    background: linear-gradient(180deg, var(--accent-color, #0a4bd6) 0%, var(--accent-color-dark, #003cc7) 100%);
     filter: brightness(1.1);
-    box-shadow: 0 4px 18px var(--accent-color-glow, rgba(0, 189, 122, 0.4));
+    box-shadow: 0 4px 18px var(--accent-color-glow, rgba(10, 75, 214, 0.4));
     transform: none;
     border-color: transparent;
-    color: #0a0a0a;
+    color: #ffffff;
 }
 
 .tabs-settings-content {
@@ -185,8 +185,8 @@
 }
 
 .add-account:hover {
-    border-color: var(--accent-color, #00bd7a);
-    background: var(--accent-color-subtle, rgba(0, 189, 122, 0.1));
+    border-color: var(--accent-color, #0a4bd6);
+    background: var(--accent-color-subtle, rgba(10, 75, 214, 0.1));
     color: #ffffff;
 }
 
@@ -200,20 +200,20 @@
 .account {
     display: flex;
     align-items: center;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(8, 11, 16, 0.55);
     border: 1px solid rgba(255, 255, 255, 0.1);
     width: 100%;
     max-width: 500px;
     height: 80px;
     padding: 0 16px;
-    border-radius: 14px;
+    border-radius: 10px;
     cursor: pointer;
     transition: all 0.25s ease;
     position: relative;
 }
 
 .account:hover {
-    background: var(--accent-color-subtle, rgba(0, 189, 122, 0.2));
+    background: var(--accent-color-subtle, rgba(10, 75, 214, 0.2));
     border-color: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
 }
@@ -278,20 +278,20 @@
 }
 
 .active-account {
-    background: rgba(0, 0, 0, 0.3);
-    border: 2px solid var(--accent-color, #00bd7a);
-    box-shadow: 0 0 25px var(--accent-color-glow, rgba(0, 189, 122, 0.2));
+    background: rgba(8, 11, 16, 0.55);
+    border: 2px solid var(--accent-color, #0a4bd6);
+    box-shadow: 0 0 25px var(--accent-color-glow, rgba(10, 75, 214, 0.2));
 }
 
 .active-account:hover {
-    background: var(--accent-color-subtle, rgba(0, 189, 122, 0.2));
-    border-color: var(--accent-color, #00bd7a);
+    background: var(--accent-color-subtle, rgba(10, 75, 214, 0.2));
+    border-color: var(--accent-color, #0a4bd6);
 }
 
 .java-settings {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(8, 11, 16, 0.55);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
+    border-radius: 10px;
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
@@ -324,23 +324,23 @@
     width: 20px;
     height: 20px;
     background: #ffffff;
-    border: 3px solid var(--accent-color, #00bd7a);
+    border: 3px solid var(--accent-color, #0a4bd6);
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(8, 11, 16, 0.55);
 }
 
 .slider-touch-left span:hover,
 .slider-touch-right span:hover {
     transform: scale(1.15);
-    box-shadow: 0 0 15px var(--accent-color-glow, rgba(0, 189, 122, 0.5));
+    box-shadow: 0 0 15px var(--accent-color-glow, rgba(10, 75, 214, 0.5));
 }
 
 .slider-touch-left span:after,
 .slider-touch-right span:after {
     content: attr(value);
-    color: var(--accent-color, #00bd7a);
+    color: var(--accent-color, #0a4bd6);
     font: 600 11px/1 'Poppins', sans-serif;
     white-space: nowrap;
     pointer-events: none;
@@ -367,7 +367,7 @@
     display: block;
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, var(--accent-color, #00bd7a), var(--accent-color-dark, #00a066));
+    background: linear-gradient(90deg, var(--accent-color, #0a4bd6), var(--accent-color-dark, #003cc7));
     border-radius: 2px;
 }
 
@@ -395,15 +395,15 @@
     padding: 10px 14px;
     margin: 12px 0;
     color: rgba(255, 255, 255, 0.9);
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(8, 11, 16, 0.55);
     border: 1px solid rgba(255, 255, 255, 0.1);
     outline: none;
     transition: all 0.2s ease;
 }
 
 .path:focus {
-    border-color: var(--accent-color, #00bd7a);
-    box-shadow: 0 0 10px var(--accent-color-glow, rgba(0, 189, 122, 0.2));
+    border-color: var(--accent-color, #0a4bd6);
+    box-shadow: 0 0 10px var(--accent-color-glow, rgba(10, 75, 214, 0.2));
 }
 
 .path-button,
@@ -411,8 +411,8 @@
     font: 500 12px/1 'Poppins', sans-serif;
     border-radius: 8px;
     padding: 10px 18px;
-    background: linear-gradient(180deg, var(--accent-color, #00bd7a) 0%, var(--accent-color-dark, #00a066) 100%);
-    color: #0a0a0a;
+    background: linear-gradient(180deg, var(--accent-color, #0a4bd6) 0%, var(--accent-color-dark, #003cc7) 100%);
+    color: #ffffff;
     cursor: pointer;
     margin-left: 10px;
     transition: all 0.2s ease;
@@ -423,7 +423,7 @@
 .path-button:hover,
 .path-button-reset:hover {
     transform: scale(1.03);
-    box-shadow: 0 4px 15px var(--accent-color-glow, rgba(0, 189, 122, 0.4));
+    box-shadow: 0 4px 15px var(--accent-color-glow, rgba(10, 75, 214, 0.4));
 }
 
 .path-file {
@@ -439,14 +439,14 @@
     padding: 10px 14px;
     margin: 12px auto;
     color: rgba(255, 255, 255, 0.9);
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(8, 11, 16, 0.55);
     border: 1px solid rgba(255, 255, 255, 0.1);
     outline: none;
     display: block;
 }
 
 .args-settings:focus {
-    border-color: var(--accent-color, #00bd7a);
+    border-color: var(--accent-color, #0a4bd6);
 }
 
 .input-size-content {
@@ -463,7 +463,7 @@
 
 .input-settings {
     text-align: center;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(8, 11, 16, 0.55);
     border: 1px solid rgba(255, 255, 255, 0.1);
     outline: none;
     border-radius: 10px;
@@ -475,7 +475,7 @@
 }
 
 .input-settings:focus {
-    border-color: var(--accent-color, #00bd7a);
+    border-color: var(--accent-color, #0a4bd6);
 }
 
 .size-cross {
@@ -496,13 +496,13 @@
 
 .select {
     border-radius: 10px;
-    background: linear-gradient(180deg, var(--accent-color, #00bd7a) 0%, var(--accent-color-dark, #00a066) 100%);
+    background: linear-gradient(180deg, var(--accent-color, #0a4bd6) 0%, var(--accent-color-dark, #003cc7) 100%);
     font: 500 12px/1 'Poppins', sans-serif;
     padding: 10px 30px 10px 14px;
     border: none;
     outline: none;
     appearance: none;
-    color: #0a0a0a;
+    color: #ffffff;
     cursor: pointer;
 }
 
@@ -526,12 +526,12 @@
 }
 
 .checkbox-settings+label:hover {
-    border-color: var(--accent-color, #00bd7a);
+    border-color: var(--accent-color, #0a4bd6);
 }
 
 .checkbox-settings:checked+label {
-    background: var(--accent-color, #00bd7a);
-    border-color: var(--accent-color, #00bd7a);
+    background: var(--accent-color, #0a4bd6);
+    border-color: var(--accent-color, #0a4bd6);
 }
 
 .checkbox-settings:checked+label .checkround {
@@ -586,7 +586,7 @@
     width: 110px;
     height: 110px;
     border-radius: 18px;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(8, 11, 16, 0.55);
     border: 2px solid rgba(255, 255, 255, 0.12);
     display: flex;
     align-items: center;
@@ -599,20 +599,20 @@
 }
 
 .launch-option .launch-icon-btn:hover {
-    background: var(--accent-color-subtle, rgba(0, 189, 122, 0.1));
-    border-color: var(--accent-color, #00bd7a);
-    color: var(--accent-color, #00bd7a);
+    background: var(--accent-color-subtle, rgba(10, 75, 214, 0.1));
+    border-color: var(--accent-color, #0a4bd6);
+    color: var(--accent-color, #0a4bd6);
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 15px var(--accent-color-glow, rgba(0, 189, 122, 0.2));
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 15px var(--accent-color-glow, rgba(10, 75, 214, 0.2));
 }
 
 .checkbox-settings:checked+.launch-icon-btn {
-    background: linear-gradient(135deg, var(--accent-color-subtle, rgba(0, 189, 122, 0.25)) 0%, rgba(0, 189, 122, 0.15) 100%);
-    border: 2px solid var(--accent-color, #00bd7a);
-    color: var(--accent-color, #00bd7a);
+    background: linear-gradient(135deg, var(--accent-color-subtle, rgba(10, 75, 214, 0.25)) 0%, rgba(10, 75, 214, 0.15) 100%);
+    border: 2px solid var(--accent-color, #0a4bd6);
+    color: var(--accent-color, #0a4bd6);
     box-shadow:
-        0 0 30px var(--accent-color-glow, rgba(0, 189, 122, 0.4)),
-        inset 0 0 20px var(--accent-color-glow, rgba(0, 189, 122, 0.1));
+        0 0 30px var(--accent-color-glow, rgba(10, 75, 214, 0.4)),
+        inset 0 0 20px var(--accent-color-glow, rgba(10, 75, 214, 0.1));
     transform: scale(1.02);
 }
 
@@ -621,7 +621,7 @@
     position: absolute;
     inset: -4px;
     border-radius: 20px;
-    border: 2px solid var(--accent-color, #00bd7a);
+    border: 2px solid var(--accent-color, #0a4bd6);
     opacity: 0.4;
     pointer-events: none;
 }
@@ -629,8 +629,8 @@
 .checkbox-settings:checked+.launch-icon-btn:hover {
     transform: translateY(-5px) scale(1.02);
     box-shadow:
-        0 0 40px var(--accent-color-glow, rgba(0, 189, 122, 0.6)),
-        inset 0 0 25px var(--accent-color-glow, rgba(0, 189, 122, 0.15));
+        0 0 40px var(--accent-color-glow, rgba(10, 75, 214, 0.6)),
+        inset 0 0 25px var(--accent-color-glow, rgba(10, 75, 214, 0.15));
 }
 
 .launch-tooltip {
@@ -672,8 +672,8 @@
 .mods-info {
     margin: 0 auto;
     padding: 20px;
-    border-radius: 14px;
-    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background: rgba(8, 11, 16, 0.55);
     border: 1px solid rgba(255, 255, 255, 0.08);
     max-width: 700px;
 }
@@ -744,12 +744,12 @@
 }
 
 .mods-recommanded {
-    background: var(--accent-color-subtle, rgba(0, 189, 122, 0.2));
-    border: 1px solid var(--accent-color, #00bd7a);
+    background: var(--accent-color-subtle, rgba(10, 75, 214, 0.2));
+    border: 1px solid var(--accent-color, #0a4bd6);
     border-radius: 6px;
     padding: 3px 8px;
     font: 500 11px/1 'Poppins', sans-serif;
-    color: var(--accent-color, #00bd7a);
+    color: var(--accent-color, #0a4bd6);
 }
 
 .mods-icon {
@@ -786,10 +786,10 @@
 }
 
 .skin-renderer-settings {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(8, 11, 16, 0.55);
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 12px;
-    border-radius: 14px;
+    border-radius: 10px;
 }
 
 .skin-upload-container {
@@ -802,7 +802,7 @@
     width: 220px;
     height: 200px;
     border: 2px dashed rgba(255, 255, 255, 0.2);
-    border-radius: 14px;
+    border-radius: 10px;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
     cursor: pointer;
@@ -812,13 +812,13 @@
 }
 
 .skin-dropzone:hover {
-    border-color: var(--accent-color, #00bd7a);
-    background: var(--accent-color-subtle, rgba(0, 189, 122, 0.08));
+    border-color: var(--accent-color, #0a4bd6);
+    background: var(--accent-color-subtle, rgba(10, 75, 214, 0.08));
 }
 
 .skin-dropzone.drag-over {
-    border-color: var(--accent-color, #00bd7a);
-    background: var(--accent-color-subtle, rgba(0, 189, 122, 0.15));
+    border-color: var(--accent-color, #0a4bd6);
+    background: var(--accent-color-subtle, rgba(10, 75, 214, 0.15));
     border-style: solid;
     transform: scale(1.02);
 }
@@ -846,7 +846,7 @@
 }
 
 .skin-dropzone:hover .dropzone-icon {
-    color: var(--accent-color, #00bd7a);
+    color: var(--accent-color, #0a4bd6);
     transform: translateY(-3px);
 }
 
@@ -864,8 +864,8 @@
 
 .dropzone-requirements {
     font: 500 11px/1 'Poppins', sans-serif;
-    color: var(--accent-color, #00bd7a);
-    background: var(--accent-color-subtle, rgba(0, 189, 122, 0.15));
+    color: var(--accent-color, #0a4bd6);
+    background: var(--accent-color-subtle, rgba(10, 75, 214, 0.15));
     padding: 6px 12px;
     border-radius: 20px;
 }
@@ -880,17 +880,17 @@
     gap: 10px;
     opacity: 0;
     transition: all 0.3s ease;
-    background: var(--accent-color-subtle, rgba(0, 189, 122, 0.2));
+    background: var(--accent-color-subtle, rgba(10, 75, 214, 0.2));
 }
 
 .dropzone-hover-state i {
     font-size: 48px;
-    color: var(--accent-color, #00bd7a);
+    color: var(--accent-color, #0a4bd6);
 }
 
 .dropzone-hover-state span {
     font: 600 16px/1 'Poppins', sans-serif;
-    color: var(--accent-color, #00bd7a);
+    color: var(--accent-color, #0a4bd6);
 }
 
 .skin-dropzone.drag-over .dropzone-hover-state {
@@ -898,12 +898,12 @@
 }
 
 .skin-dropzone.upload-success {
-    border-color: var(--accent-color, #00bd7a);
+    border-color: var(--accent-color, #0a4bd6);
     border-style: solid;
 }
 
 .skin-dropzone.upload-success .dropzone-icon {
-    color: var(--accent-color, #00bd7a);
+    color: var(--accent-color, #0a4bd6);
 }
 
 .switch {
@@ -943,15 +943,15 @@
     background-color: #ffffff;
     transition: all 0.3s ease;
     border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 5px rgba(8, 11, 16, 0.55);
 }
 
 input:checked+.slider {
-    background: var(--accent-color-subtle, rgba(0, 189, 122, 0.3));
-    border-color: var(--accent-color, #00bd7a);
+    background: var(--accent-color-subtle, rgba(10, 75, 214, 0.3));
+    border-color: var(--accent-color, #0a4bd6);
 }
 
 input:checked+.slider:before {
     transform: translateX(18px);
-    background: var(--accent-color, #00bd7a);
+    background: var(--accent-color, #0a4bd6);
 }

@@ -63,6 +63,7 @@ class Config {
             content: item['content:encoded']._text,
             author: item['dc:creator']._text,
             publish_date: item.pubDate._text,
+            link: item.link && item.link._text ? item.link._text : null,
             image: item.enclosure && item.enclosure._attributes ? item.enclosure._attributes.url : null
         };
     }

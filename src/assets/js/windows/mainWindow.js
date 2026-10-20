@@ -5,7 +5,7 @@
  *
  * Edited by CentralCorp Team
  */
-const { app, BrowserWindow, Menu } = require("electron");
+const { app, BrowserWindow, Menu, shell, session } = require("electron");
 const path = require("path");
 const os = require("os");
 const pkg = require("../../../../package.json");
@@ -22,7 +22,20 @@ function destroyWindow() {
     mainWindow = undefined;
 }
 
+// YouTube refuse l'intégration sans référent valide (erreur 153) : on en fournit un au lecteur du launcher
+function setupYoutubeReferer() {
+    const ses = session.fromPartition('persist:ez-youtube');
+    ses.webRequest.onBeforeSendHeaders(
+        { urls: ['*://*.youtube.com/*', '*://*.youtube-nocookie.com/*'] },
+        (details, callback) => {
+            details.requestHeaders['Referer'] = 'https://exorcist-zero.x10.mx/';
+            callback({ requestHeaders: details.requestHeaders });
+        }
+    );
+}
+
 function createWindow() {
+    setupYoutubeReferer();
     destroyWindow();
     mainWindow = new BrowserWindow({
         title: pkg.preductname,
@@ -36,8 +49,16 @@ function createWindow() {
         show: false,
         webPreferences: {
             contextIsolation: false,
-            nodeIntegration: true
+            nodeIntegration: true,
+            webviewTag: true
         },
+    });
+    // <webview> des notifications : les liens externes s'ouvrent dans le navigateur
+    mainWindow.webContents.on('did-attach-webview', (_e, contents) => {
+        contents.setWindowOpenHandler(({ url }) => {
+            shell.openExternal(url);
+            return { action: 'deny' };
+        });
     });
     Menu.setApplicationMenu(null);
     mainWindow.setMenuBarVisibility(false);

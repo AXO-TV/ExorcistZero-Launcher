@@ -79,5 +79,22 @@
     "error_skin_size": "L'image doit faire 64x64 pixels.",
     "no_mod_description": "Aucune description pour ce mod",
     "recommended": "Recommandé",
-    "mod_info_missing_admin": "Les informations pour le mod ${mod} n'ont pas étés mises par les administrateurs."
+    "mod_info_missing_admin": "Les informations pour le mod ${mod} n'ont pas étés mises par les administrateurs.",
+    "online_count": "en ligne",
+    "offline_label": "Hors ligne",
+    "hero_subtitle": "Serveur Minecraft RP : Jujutsu Kaisen",
+    "changelog_title": "Patch-notes",
+    "changelog_empty": "Il n'y a pas de patch-note pour le moment.",
+    "notifications": "Notifications",
+    "discord": "Discord",
+    "website": "Site web",
+    "notifications_error": "Impossible de charger les notifications du site.",
+    "forum": "Forum",
+    "wiki": "Wiki",
+    "support": "Support",
+    "open_in_browser": "Ouvrir dans le navigateur",
+    "census_title": "Recensement",
+    "census_loading": "Chargement…",
+    "census_empty": "Aucun recensement trouvé pour ton compte.",
+    "census_login": "Connecte-toi au site (bouton Notifications) pour afficher ton recensement."
 }

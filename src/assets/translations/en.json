@@ -80,5 +80,22 @@
     "error_skin_size": "Image must be 64x64 pixels.",
     "no_mod_description": "No description for this mod",
     "recommended": "Recommended",
-    "mod_info_missing_admin": "Information for mod ${mod} has not been set by administrators."
+    "mod_info_missing_admin": "Information for mod ${mod} has not been set by administrators.",
+    "online_count": "online",
+    "offline_label": "Offline",
+    "hero_subtitle": "Minecraft RP server: Jujutsu Kaisen",
+    "changelog_title": "Patch notes",
+    "changelog_empty": "There are no patch notes at the moment.",
+    "notifications": "Notifications",
+    "discord": "Discord",
+    "website": "Website",
+    "notifications_error": "Unable to load the website notifications.",
+    "forum": "Forum",
+    "wiki": "Wiki",
+    "support": "Support",
+    "open_in_browser": "Open in browser",
+    "census_title": "Census",
+    "census_loading": "Loading…",
+    "census_empty": "No census entry found for your account.",
+    "census_login": "Sign in to the website (Notifications button) to see your census."
 }

@@ -1,0 +1,377 @@
+/* ==========================================================================
+   Exorcist Zero — thème visuel du launcher (aligné sur le site)
+   Esthétique uniquement : aucune règle de comportement ici.
+   Pour revenir à l'ancien rendu, retirer l'@import "theme.css" de launcher.css.
+   ========================================================================== */
+
+:root {
+    /* Surfaces du site (theme-color #0f141b) */
+    --ez-bg: #0f141b;
+    --ez-surface: #151c26;
+    --ez-surface-2: #1b232f;
+    --ez-line: rgba(255, 255, 255, 0.07);
+    /* L'accent par défaut est défini dans home.css (--accent-color) ;
+       il reste surchargé par l'accent_color du panel. */
+}
+
+/* Voile bleu nuit au-dessus du fond (fonctionne aussi quand le JS pose le fond du rôle) */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(900px 420px at 85% -10%, var(--accent-color-subtle), transparent 70%),
+        linear-gradient(180deg, rgba(15, 20, 27, 0.62) 0%, rgba(15, 20, 27, 0.88) 100%);
+}
+
+/* Barre de fenêtre */
+.dragbar { background: rgba(15, 20, 27, 0.85); border-bottom: 1px solid var(--ez-line); }
+.icon-close:hover { background: #c0392b; }
+
+/* Barre latérale : trait d'accent comme dans l'en-tête du site */
+.sidebar {
+    background: rgba(15, 20, 27, 0.92);
+    border-right: 1px solid var(--ez-line);
+    box-shadow: inset -1px 0 0 var(--accent-color-subtle);
+}
+.player-head { border-radius: 10px; }
+.settings-btn { background: var(--ez-surface-2); border: 1px solid var(--ez-line); }
+.settings-btn:hover { background: var(--ez-surface); border-color: var(--border-accent); }
+
+/* Bouton Jouer : l'élément principal, le reste reste sobre */
+.play-btn { border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 12px; }
+
+/* Cartes : même grammaire que les blocs du site (aplats bleu nuit, bordure fine) */
+.news-block,
+.server,
+.ytb {
+    background: var(--ez-surface);
+    border: 1px solid var(--ez-line);
+    border-radius: 12px;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    opacity: 1;
+}
+.news-block:hover,
+.server:hover,
+.ytb:hover { border-color: var(--border-accent); }
+.news-header { background: var(--ez-surface-2); border-bottom: 1px solid var(--ez-line); }
+.bbWrapper { background: rgba(8, 11, 16, 0.4); }
+.ytb-header { background: var(--ez-surface-2); }
+.etat-text { background: rgba(8, 11, 16, 0.6); border: 1px solid var(--ez-line); }
+.ytb-btn { color: #ffffff; border-radius: 8px; }
+
+/* Bandeau d'annonce : rouge sombre (malédiction) plutôt que rouge vif */
+.advert-banner {
+    background: linear-gradient(90deg, rgba(120, 28, 40, 0.92), rgba(78, 18, 30, 0.95));
+    border: 1px solid rgba(255, 120, 120, 0.18);
+}
+
+/* Connexion */
+.login-card-main,
+.a2f-card,
+.email-verify-card {
+    background: rgba(15, 20, 27, 0.9);
+    border: 1px solid var(--ez-line);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+.login-card-main::before {
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    height: 2px;
+    opacity: 0.8;
+}
+.login-input-group label { letter-spacing: 0.2px; font-size: 13px; }
+.login-input { background: rgba(8, 11, 16, 0.6); border-color: var(--ez-line); }
+.login-btn, .primary-btn, .login-btn-2f { letter-spacing: 0.3px; border-radius: 10px; }
+
+/* Paramètres */
+.tabs-settings-btn { background: rgba(15, 20, 27, 0.92); border-right: 1px solid var(--ez-line); }
+.tab-btn-css { background: transparent; border-color: transparent; border-radius: 8px; }
+.tab-btn-css:hover { background: var(--ez-surface-2); border-color: var(--ez-line); transform: none; }
+.tab-btn-css.active-tab-btn {
+    background: var(--accent-color-subtle);
+    border-color: var(--border-accent);
+    box-shadow: inset 3px 0 0 var(--accent-color);
+}
+.tab-btn-css.save-tabs-btn {
+    background: linear-gradient(180deg, var(--accent-color) 0%, var(--accent-color-dark) 100%);
+    border-color: transparent;
+    color: #ffffff;
+    box-shadow: 0 2px 12px var(--accent-color-glow);
+}
+.tab-btn-css.save-tabs-btn:hover { filter: brightness(1.1); }
+.java-settings, .mods-info, .account, .skin-renderer-settings { background: var(--ez-surface); border-color: var(--ez-line); }
+.mods-list { background: rgba(8, 11, 16, 0.4); }
+.mods-container { background: var(--ez-surface-2); border-color: var(--ez-line); }
+
+/* Écrans de chargement */
+.preload-progress::after, .loading-spinner::after { background: rgba(15, 20, 27, 0.85); }
+#account-loading-overlay { background: var(--ez-bg); }
+
+/* Accessibilité : focus clavier visible, animations réduites */
+:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ==========================================================================
+   Accueil : héros du serveur, patch-notes, actu, boutons latéraux
+   ========================================================================== */
+:root {
+    /* accent éclairci pour le texte : lisible sur fond sombre, quel que soit l'accent du panel */
+    --accent-text: color-mix(in srgb, var(--accent-color) 55%, #ffffff);
+}
+.day, .player-monnaie, .dropzone-requirements, .mods-recommanded { color: var(--accent-text); }
+
+/* Boutons de la barre latérale (notifications, Discord, site) */
+.sidebar-top { gap: 10px; }
+.sidebar-bottom { gap: 8px; }
+.side-btn {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--ez-line);
+    border-radius: 10px;
+    background: var(--ez-surface-2);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.side-btn svg { width: 20px; height: 20px; fill: currentColor; pointer-events: none; }
+.side-btn:hover { background: var(--ez-surface); color: #ffffff; border-color: var(--border-accent); }
+.discord-btn:hover { color: #8ea1ff; }
+.settings-btn { margin-top: 2px; }
+
+/* Héros : nom du serveur + infos, légèrement au-dessus du centre */
+.hero {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 0 28px 36px;
+}
+.hero-text { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; min-width: 0; }
+.hero-eyebrow {
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border-accent);
+    background: var(--accent-color-subtle);
+    color: var(--accent-text);
+    font: 600 12px/1 'Poppins', sans-serif;
+    letter-spacing: 0.6px;
+}
+.hero-title {
+    margin: 0;
+    font: italic 700 clamp(44px, 7vw, 92px)/1.02 Georgia, 'Times New Roman', serif;
+    background: linear-gradient(180deg, #ffffff 25%, var(--accent-text) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 6px 24px rgba(0, 0, 0, 0.45));
+    padding-right: 0.15em;
+}
+.hero-subtitle { margin: 0; font: 400 clamp(14px, 1.5vw, 19px)/1.4 'Poppins', sans-serif; color: var(--text-secondary); }
+.hero-art-wrap { position: relative; flex-shrink: 0; align-self: stretch; display: flex; align-items: center; }
+.hero-art { max-height: 100%; max-width: 280px; object-fit: contain; filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5)); }
+.hero-online {
+    position: absolute;
+    top: 8%;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: rgba(15, 20, 27, 0.85);
+    border: 1px solid var(--ez-line);
+    font: 600 12px/1 'Poppins', sans-serif;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+.hero-online-dot { width: 8px; height: 8px; border-radius: 50%; background: #2ecc71; box-shadow: 0 0 8px rgba(46, 204, 113, 0.7); }
+.hero-online-dot.off { background: #e63946; box-shadow: 0 0 8px rgba(230, 57, 70, 0.6); }
+
+/* Patch-notes : mêmes bulles que les actus, en plus petit, 3 côte à côte */
+.changelog-section { flex-shrink: 0; padding: 0 4px 2px; }
+.changelog-title { font: 600 14px/1.2 'Poppins', sans-serif; color: var(--text-primary); margin: 0 4px 10px; }
+.changelog-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.changelog-card { margin-bottom: 0; }
+.changelog-card .news-header { min-height: 0; padding: 9px 12px; gap: 8px; }
+.changelog-card .title { font-size: 13px; max-width: 100%; -webkit-line-clamp: 1; line-clamp: 1; }
+.changelog-card .bbWrapper { padding: 10px 12px; font-size: 11.5px; line-height: 1.5; min-height: 66px; }
+.changelog-card .bbWrapper p { margin: 0; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.changelog-date { font: 600 10px/1 'Poppins', sans-serif; color: var(--text-muted); flex-shrink: 0; }
+.changelog-card.is-empty .bbWrapper { color: var(--text-muted); font-style: italic; }
+.is-link { cursor: pointer; }
+
+/* Dernière actualité (colonne de droite) */
+.ytb-container { flex: none; }
+.news-item { padding-right: 10px; }
+.news-compact { margin-bottom: 0; }
+.news-compact .news-header { min-height: 0; padding: 10px 12px; }
+.news-compact .title { font-size: 13px; }
+.news-compact .date { display: flex; align-items: baseline; gap: 4px; }
+.news-compact .day { font-size: 16px; display: inline; }
+.news-compact .month { font-size: 9px; }
+.news-compact .news-image { height: 110px; margin: 10px 12px 0; }
+.news-compact .bbWrapper { padding: 10px 12px; font-size: 11.5px; }
+.news-compact .bbWrapper p { margin: 0; display: -webkit-box; -webkit-line-clamp: 4; line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+
+@media (max-width: 1000px) {
+    .hero-art-wrap { display: none; }
+    .changelog-list { grid-template-columns: 1fr; }
+}
+
+/* Bulle serveur : au-dessus des patch-notes */
+.server-bar { flex-shrink: 0; padding: 0 4px 12px; }
+.server-bar .server { padding: 12px 14px; }
+.server-bar .server-img { width: 40px; height: 40px; }
+.server-bar .etat-text { top: 50%; transform: translateY(-50%); }
+
+/* Bouton notifications actif */
+.side-btn.is-active { background: var(--accent-color-subtle); color: #ffffff; border-color: var(--border-accent); }
+.side-btn svg[viewBox="0 0 512 512"] { width: 19px; height: 19px; }
+
+/* Notifications du site, affichées dans le launcher */
+.home-content { position: relative; }
+.notif-overlay {
+    position: absolute;
+    top: 26px;
+    left: 72px;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    background: var(--ez-bg);
+    border-left: 1px solid var(--ez-line);
+    animation: notifIn 0.18s ease-out;
+}
+.notif-overlay[hidden] { display: none; }
+@keyframes notifIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: none; } }
+.notif-header {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: var(--ez-surface);
+    border-bottom: 1px solid var(--ez-line);
+}
+.notif-title { font: 600 15px/1.2 'Poppins', sans-serif; color: var(--text-primary); }
+.notif-actions { display: flex; gap: 8px; }
+.notif-action {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--ez-line);
+    background: var(--ez-surface-2);
+    color: var(--text-secondary);
+    font-size: 15px;
+    cursor: pointer;
+    -webkit-app-region: no-drag;
+}
+.notif-action:hover { color: #ffffff; border-color: var(--border-accent); }
+.notif-body { flex: 1; min-height: 0; position: relative; }
+.notif-view { position: absolute; inset: 0; width: 100%; height: 100%; }
+.notif-error { padding: 40px; text-align: center; color: var(--text-muted); font: 400 14px/1.5 'Poppins', sans-serif; }
+
+/* Barre latérale : boutons Forum / Wiki / Support (même style que les autres) */
+.side-btn svg[viewBox="0 0 576 512"] { width: 21px; height: 17px; }
+.side-btn svg[viewBox="0 0 448 512"] { width: 17px; height: 19px; }
+@media (max-height: 680px) {
+    .side-btn, .settings-btn { width: 38px; height: 38px; }
+    .sidebar-top { gap: 6px; }
+    .sidebar-bottom { gap: 6px; }
+    .sidebar { padding: 14px 0; }
+}
+
+/* Téléchargement : carte flottante à côté du bouton Jouer (au lieu d'un texte coincé dans la barre) */
+.download-content { display: none; }
+.play-element:has(.play-btn[style*="display: none"]) .download-content {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 46px);
+    transform: translateY(-50%);
+    width: 210px;
+    margin: 0;
+    padding: 12px 14px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 9px;
+    background: var(--ez-surface);
+    border: 1px solid var(--border-accent);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    z-index: 30;
+}
+.download-content .text-download {
+    font: 600 12px/1.2 'Poppins', sans-serif;
+    color: var(--text-primary);
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.download-content .dl-percent { float: right; margin-left: 10px; color: var(--accent-text); font-weight: 700; }
+.download-content .progress-bar { width: 100%; height: 6px; border-radius: 6px; }
+.download-content .progress-bar::-webkit-progress-bar { background-color: rgba(255, 255, 255, 0.1); border-radius: 6px; }
+.download-content .progress-bar::-webkit-progress-value { border-radius: 6px; }
+
+/* Bulle vidéo : plus compacte, lecteur intégré */
+.ytb-header { padding: 8px 12px; }
+.ytb .video { padding: 6px; gap: 0; }
+.ytb .youtube-thumbnail { border-radius: 8px; }
+.ytb .thumbnail-img { aspect-ratio: 16 / 9; object-fit: cover; }
+.ytb .youtube-thumbnail.playing { height: 0; padding-top: 56.25%; cursor: default; }
+.ytb .youtube-thumbnail.playing webview { position: absolute; inset: 0; width: 100%; height: 100%; display: flex; }
+.main-content { grid-template-columns: minmax(0, 1fr) 320px; }
+
+/* Recensement du joueur (sous l'actualité) */
+.census-item { padding-right: 10px; }
+.census-card { background: var(--ez-surface); border: 1px solid var(--ez-line); border-radius: 12px; overflow: hidden; transition: border-color 0.2s ease; }
+.census-card:hover { border-color: var(--border-accent); }
+.census-header { display: flex; align-items: center; justify-content: space-between; padding: 9px 12px; background: var(--ez-surface-2); border-bottom: 1px solid var(--ez-line); }
+.census-title { font: 600 13px/1.2 'Poppins', sans-serif; color: var(--text-primary); }
+.census-open { color: var(--text-muted); font-size: 14px; cursor: pointer; }
+.census-open:hover { color: var(--accent-text); }
+.census-body { padding: 8px 12px 10px; cursor: pointer; display: flex; flex-direction: column; gap: 5px; background: rgba(8, 11, 16, 0.4); }
+.census-row { display: flex; justify-content: space-between; gap: 12px; font: 400 11.5px/1.4 'Poppins', sans-serif; }
+.census-label { color: var(--text-muted); flex-shrink: 0; }
+.census-value { color: var(--text-primary); font-weight: 600; text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.census-empty { font: 400 11.5px/1.5 'Poppins', sans-serif; color: var(--text-muted); font-style: italic; }
+
+/* Recensement : carte joueur (avatar + lignes) */
+.census-profile { display: flex; align-items: center; gap: 12px; }
+.census-avatar { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border-accent); flex-shrink: 0; }
+.census-lines { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1; }
+.census-row.solo .census-value { text-align: left; font-weight: 500; color: var(--text-secondary); }
+.census-lines .census-row.solo:first-child .census-value,
+.census-body > .census-row.solo:first-child .census-value { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+
+/* ===== Recensement : carte joueur (comme sur le site) ===== */
+.census-header { display: none; }
+.census-card {
+    background: linear-gradient(135deg, rgba(27, 35, 47, 0.95), rgba(15, 20, 27, 0.95));
+    border: 1px solid var(--ez-line);
+    border-left: 4px solid var(--accent-color);
+    border-radius: 12px;
+    cursor: pointer;
+}
+.census-body { background: transparent; padding: 14px 16px; gap: 0; }
+.census-profile { display: flex; align-items: center; gap: 14px; }
+.census-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-color); flex-shrink: 0; }
+.census-lines { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1; }
+.cn-name { font: 700 17px/1.2 'Poppins', sans-serif; color: #ffffff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cn-tech { font: 700 12.5px/1.3 'Poppins', sans-serif; color: var(--text-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cn-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 3px; }
+.cn-badge { padding: 2px 10px; border-radius: 999px; font: 500 11px/1.4 'Poppins', sans-serif; color: #ffffff; background: rgba(150, 20, 35, 0.35); border: 1px solid #b3202f; }
+.cn-muted { font: 400 11px/1.4 'Poppins', sans-serif; color: var(--text-secondary); }
+.census-empty { padding: 2px 0; }

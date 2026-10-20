@@ -1,7 +1,7 @@
 @import "font.css";
 
 body {
-    background-color: #000000;
+    background-color: #0f141b;
     font-family: "Poppins";
     letter-spacing: 0px;
     -webkit-app-region: drag;
@@ -106,6 +106,6 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-    background-color: rgb(0, 255, 55);
+    background-color: #0a4bd6;
     border-radius: 10px;
 }

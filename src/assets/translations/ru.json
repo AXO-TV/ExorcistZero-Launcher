@@ -80,5 +80,22 @@
     "error_skin_size": "Изображение должно быть 64x64 пикселей.",
     "no_mod_description": "Нет описания для этого мода",
     "recommended": "Рекомендуется",
-    "mod_info_missing_admin": "Информация для мода ${mod} не была установлена администраторами."
+    "mod_info_missing_admin": "Информация для мода ${mod} не была установлена администраторами.",
+    "online_count": "онлайн",
+    "offline_label": "Не в сети",
+    "hero_subtitle": "Minecraft RP сервер: Jujutsu Kaisen",
+    "changelog_title": "Список изменений",
+    "changelog_empty": "Пока нет списка изменений.",
+    "notifications": "Уведомления",
+    "discord": "Discord",
+    "website": "Сайт",
+    "notifications_error": "Не удалось загрузить уведомления сайта.",
+    "forum": "Форум",
+    "wiki": "Вики",
+    "support": "Поддержка",
+    "open_in_browser": "Открыть в браузере",
+    "census_title": "Перепись",
+    "census_loading": "Загрузка…",
+    "census_empty": "Для вашей учётной записи записей переписи не найдено.",
+    "census_login": "Войдите на сайт (кнопка «Уведомления»), чтобы увидеть свою перепись."
 }
