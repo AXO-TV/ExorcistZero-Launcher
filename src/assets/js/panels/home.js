@@ -251,6 +251,18 @@ class Home {
         ? false
         : { width: resolution.screen.width, height: resolution.screen.height };
 
+    // CentralCorp excludes the root Minecraft options.txt in the server manifest.
+    // Do not pass that basename to minecraft-java-core's ignored list: the core
+    // may also match config/fancymenu/options.txt and prevent FancyMenu settings
+    // from being refreshed. Other configured ignore entries remain unchanged.
+    const configuredIgnored = Array.isArray(this.config.ignored)
+      ? [...this.config.ignored]
+      : Object.values(this.config.ignored || {});
+    const ignoredForCore = configuredIgnored.filter((entry) => {
+      const normalized = String(entry).replace(/\\/g, "/").replace(/\/$/, "");
+      return normalized.toLowerCase() !== "options.txt";
+    });
+
     return {
       url: urlpkg,
       authenticator: account,
@@ -265,12 +277,7 @@ class Home {
         enable: this.config.loader.enable,
       },
       verify: this.config.verify,
-      ignored: [
-        ...(Array.isArray(this.config.ignored)
-          ? this.config.ignored
-          : Object.values(this.config.ignored)),
-        "launcher_config",
-      ],
+      ignored: [...ignoredForCore, "launcher_config"],
       intelEnabledMac:
         process.platform === "darwin" && process.arch === "arm64",
       downloadFileMultiple: 30,
