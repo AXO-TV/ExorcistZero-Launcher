@@ -277,7 +277,12 @@ class Home {
         enable: this.config.loader.enable,
       },
       verify: this.config.verify,
-      ignored: [...ignoredForCore, "launcher_config"],
+      ignored: [
+  ...(Array.isArray(this.config.ignored)
+    ? this.config.ignored
+    : Object.values(this.config.ignored || {})),
+  "launcher_config",
+],
       intelEnabledMac:
         process.platform === "darwin" && process.arch === "arm64",
       downloadFileMultiple: 30,
